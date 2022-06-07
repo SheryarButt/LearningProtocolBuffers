@@ -1,0 +1,56 @@
+// The syntax for this file is proto3
+syntax = "proto3";
+
+// Import other .proto files to use messages defined in them. 
+// Must use complete path from the project root to the file for proper import.
+import "013_Practice_Exercies/1_Date.proto";
+
+/* type name = tag */
+/*
+ * type specifies datatype, int, float, string, bool, byte.
+ * name specifies name of the field, can be anything without spaces.
+ * tag specifies a unqiue number to access a specific field.
+ */
+
+message Person {
+    int32 age = 1 ; // Age of the person siging up.
+    string first_name = 2; // First name as documented in signup form.
+    string last_name = 3; // Last name as documented in signup form.
+    bytes small_picture = 4 ; // Small picture in .jpg type.
+    bool is_profile_verified = 5 ; 
+    float height = 6; // Height in cms.
+
+    // repeated specifies a list or array of any datatype discussed above.
+    repeated string phone_numbers = 7; // A list of phone numbers that is optional to provide. 
+
+    // Enum for eye colours, 
+    // All Enums must start with tag 0, where default value is always tag 0.
+    // Enum is used if you know all the values in advance. 
+    
+    enum EyeColour {
+        UNKNOWN_EYE_COLOUR = 0;
+        EYE_GREEN = 1;
+        EYE_BROWN = 2;
+        EYE_BLUE = 3;
+    }
+
+    // Using above defined Enum.
+    EyeColor eye_colour = 8;
+
+    // Defining date using muliple messages in single file defined below.
+    // AKA Same level messages, as both messages are defined in same file.
+    Date birthday = 9;
+
+    // Nested message type Address withing Person (Full name Person.Address).
+    message Address {
+        string address_line_1 = 1;
+        string address_line_2 = 2;
+        string zipcode = 3;
+        string city = 4;
+        string country = 5;
+    }
+
+    // Multiple addresses based on Address message defined above.
+    repeated Address addresses = 10;
+
+}

@@ -1,0 +1,22 @@
+// The syntax for this file is proto3
+syntax = "proto3";
+
+/* type name = tag */
+/*
+ * type specifies datatype, int, float, string, bool, byte.
+ * name specifies name of the field, can be anything without spaces.
+ * tag specifies a unqiue number to access a specific field.
+ */
+
+message Person {
+    int32 age = 1 ; // Age of the person siging up.
+    string first_name = 2; // First name as documented in signup form.
+    string last_name = 3; // Last name as documented in signup form.
+    bytes small_picture = 4 ; // Small picture in .jpg type.
+    bool is_profile_verified = 5 ; 
+    float height = 6; // Height in cms.
+
+    repeated string phone_numbers = 7; // A list of phone numbers that is optional to provide. 
+}
+
+// repeated specifies a list or array of any datatype discussed above.
